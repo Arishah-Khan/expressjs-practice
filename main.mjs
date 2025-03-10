@@ -16,7 +16,7 @@ app.use("/", express.static(path.join(__dirname, "./ecommerce_frontend/dist")));
 
 connectToDb()
   .then(() => {
-    console.log("✅ Database connection successful");
+    console.log(" Database connection successful");
 
     // app.use(cors({
     //     origin: "http://localhost:5173", 
@@ -28,8 +28,8 @@ connectToDb()
 
     app.use("/api/auth", router);
 
-    app.listen(5000, () => console.log("🚀 Server running on port 5000"));
+    app.listen(5000, () => console.log("Server running on port 5000"));
   })
   .catch((error) => {
-    console.error("❌ Database connection failed:", error.message);
+    console.error("Database connection failed:", error.message);
   });

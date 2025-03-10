@@ -3,19 +3,19 @@ import User from "../models/user.js";
 
 const protect = async (req, res, next) => {
   try {
-    const token = req.cookies.jwt; // ✅ Token ko cookies se lo
+    const token = req.cookies.jwt; 
 
     if (!token) {
       return res.status(401).json({ message: "Not authorized, no token" });
     }
 
-    const decoded = jwt.verify(token, process.env.JWT_SECRET); // ✅ Token verify karo
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
-    req.user = await User.findById(decoded.userId).select("-password"); // ✅ User ko DB se fetch karo (password exclude karke)
+    req.user = await User.findById(decoded.userId).select("-password"); 
 
     next();
   } catch (error) {
-    console.error("❌ Auth Middleware Error:", error);
+    console.error("Auth Middleware Error:", error);
     res.status(401).json({ message: "Not authorized, invalid token" });
   }
 };
